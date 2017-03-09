@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-rate-limit": "^2.6.0",
+    "helmet": "^3.5.0",
     "mysql": "^2.13.0",
     "serve-favicon": "~2.3.0",
     "uuid": "^3.0.1"

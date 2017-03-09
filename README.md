@@ -14,13 +14,35 @@ If there's a new sensor, use the SQL-query below to create a new table.
 ```
 CREATE TABLE <input-name-here> (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    data VARCHAR(255) NOT NULL,
+    data float unsigned NOT NULL,
     miliseconds VARCHAR(255) NOT NULL,
     date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 ## API
+
+```
+Endpoint: /get/:startDate/:endDate
+Type: GET
+```
+Params:
+```
+startDate => YYYY-MM-DD HH:mm:ss
+endDate => YYYY-MM-DD HH:mm:ss
+```
+
+```
+Endpoint: /get/:sensor/:startDate/:endDate
+Type: GET
+```
+Params:
+```
+sensor => sensor name
+startDate => YYYY-MM-DD HH:mm:ss
+endDate => YYYY-MM-DD HH:mm:ss
+```
+
 ```
 Endpoint: /save
 Type: POST
