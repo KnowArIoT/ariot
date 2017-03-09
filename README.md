@@ -21,10 +21,12 @@ CREATE TABLE <input-name-here> (
 ```
 
 ## API
-
 ```
-(POST) /save
-
+Endpoint: /save
+Type: POST
+```
+Content:
+```
 Params: [{"name": "gas", "time": 123, "data": 10.24}]
 
 name => sensor (and table) name
