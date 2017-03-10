@@ -1,6 +1,7 @@
 const express = require('express');
 const database = require('../lib/database');
 const RateLimit = require('express-rate-limit');
+const cors = require('cors');
 
 const router = express.Router();
 
@@ -19,6 +20,8 @@ const getApiLimiter = new RateLimit({
   delayAfter: 1,
   message: "Dude... Chill out! Try again in a minute!"
 });
+
+app.use(cors());
 
 router.get('/', (req, res, next) => {
     res.status(200).json({'image': 'https://cdn.meme.am/cache/instances/folder620/500x/73490620.jpg'})
