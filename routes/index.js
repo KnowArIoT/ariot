@@ -35,7 +35,7 @@ router.get('/data', getApiLimiter, (req, res, next) => {
   const endDate = req.query.endDate;
 
   if(req.query.sensors == 'all') {
-    sensors = ['u1', 'u2', 'gas'];
+    sensors = ['u1', 'u2', 'gas', 'mag', 'gps', 'accl', 'gyro'];
   }
   else {
     if(req.query.sensors.indexOf(',') != -1) {
@@ -75,7 +75,7 @@ router.post('/save', postApiLimiter, (req, res, next) => {
   const dataList = req.body;
 
   for(const point of dataList) {
-    database.saveData(point.name, point.data, point.time);
+    database.saveData(point.name, point.data, point.time, point.miliseconds);
   }
   res.status(200).end();
 });
