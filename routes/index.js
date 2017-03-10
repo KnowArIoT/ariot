@@ -75,7 +75,7 @@ router.post('/save', postApiLimiter, (req, res, next) => {
   const dataList = req.body;
 
   for(const point of dataList) {
-    database.saveData(point.name, point.data, point.time, point.miliseconds);
+    database.saveData(point.name, point.data, point.time, point.milliseconds);
   }
   res.status(200).end();
 });
