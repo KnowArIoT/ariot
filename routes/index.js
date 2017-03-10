@@ -33,18 +33,18 @@ router.get('/health', (req, res, next) => {
 router.get('/data', getApiLimiter, (req, res, next) => {
 
   let sensors = [];
-  const startDate = req.params.startDate;
-  const endDate = req.params.endDate;
+  const startDate = req.query.startDate;
+  const endDate = req.query.endDate;
 
-  if(req.params.sensors == 'all') {
+  if(req.query.sensors == 'all') {
     sensors = ['u1', 'u2', 'gas'];
   }
   else {
-    if(req.params.sensors.indexOf(',') != -1) {
-      sensors = req.params.sensors.split(',');
+    if(req.query.sensors.indexOf(',') != -1) {
+      sensors = req.query.sensors.split(',');
     }
     else {
-      sensors.push(req.params.sensors);
+      sensors.push(req.query.sensors);
     }
   }
 
