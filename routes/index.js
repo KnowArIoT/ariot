@@ -32,9 +32,21 @@ router.get('/health', (req, res, next) => {
 
 router.get('/data', getApiLimiter, (req, res, next) => {
 
-  const sensors = req.body.sensors;
-  const startDate = req.body.startDate;
-  const endDate = req.body.endDate;
+  let sensors = [];
+  const startDate = req.params.startDate;
+  const endDate = req.params.endDate;
+
+  if(req.params.sensors == 'all') {
+    sensors = ['u1', 'u2', 'gas'];
+  }
+  else {
+    if(req.params.sensors.indexOf(',') != -1) {
+      sensors = req.params.sensors.split(',');
+    }
+    else {
+      sensors.push(req.params.sensors);
+    }
+  }
 
   database.getDataFromATable(sensors, startDate, endDate).then((results) => {
     res.status(200).json(results);
