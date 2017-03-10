@@ -82,9 +82,11 @@ router.post('/save', postApiLimiter, (req, res, next) => {
 
 router.post('/s3', postApiLimiter, (req, res, next) => {
   const url = req.body.url;
+  const coords = req.body.latlong;
   const time = req.body.time;
+  const milliseconds = req.body.milliseconds;
 
-  database.saveImageData(url, time);
+  database.saveImageData(url, coords, time, milliseconds);
 
   res.status(200).end();
 });
