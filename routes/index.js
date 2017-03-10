@@ -12,7 +12,11 @@ const apiLimiter = new RateLimit({
   message: "Dude... Chill out! Try again in a minute!"
 });
 
-router.get('/health', function(req, res, next) {
+router.get('/', (req, res, next) => {
+    res.status(200).json({'image': 'https://cdn.meme.am/cache/instances/folder620/500x/73490620.jpg'})
+});
+
+router.get('/health', (req, res, next) => {
   res.status(200).json({'message': 'The system is up!'});
 });
 
