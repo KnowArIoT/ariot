@@ -20,8 +20,6 @@ const getApiLimiter = new RateLimit({
   message: "Dude... Chill out! Try again in a minute!"
 });
 
-// TODO: Input validation
-
 router.get('/', (req, res, next) => {
     res.status(200).json({'image': 'https://cdn.meme.am/cache/instances/folder620/500x/73490620.jpg'})
 });
