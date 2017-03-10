@@ -54,6 +54,22 @@ router.get('/data', getApiLimiter, (req, res, next) => {
   });
 });
 
+router.get('/data/:sensor', (req, res, next) => {
+  const sensor = req.params.sensor;
+  const count = req.query.count;
+
+  if(Number.isInteger(req.query.count)) {
+    res.status(400).send();
+  }
+
+  database.getXLatestPoints(sensor, count).then((results) => {
+    res.status(200).json(results);
+  })
+  .catch((err) => {
+    res.status(500).send(err);
+  });
+});
+
 router.post('/save', postApiLimiter, (req, res, next) => {
 
   const dataList = req.body;
