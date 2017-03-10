@@ -23,11 +23,12 @@ CREATE TABLE <input-name-here> (
 ## API
 
 ```
-Endpoint: /get/:startDate/:endDate
+Endpoint: /data
 Type: GET
 ```
 Params:
 ```
+sensor => sensor name (all | u1 | u2 | gas)
 startDate => YYYY-MM-DD HH:mm:ss
 endDate => YYYY-MM-DD HH:mm:ss
 ```
