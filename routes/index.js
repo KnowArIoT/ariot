@@ -72,7 +72,7 @@ router.get('/data/:sensor', (req, res, next) => {
 
 router.get('/image', (req, res, next) => {
   database.getImageData().then((result) => {
-    res.status(200).json(results);
+    res.status(200).json(result);
   })
   .catch((err) => {
     res.status(500).send(err);
