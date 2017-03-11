@@ -89,6 +89,7 @@ router.post('/*', (req, res, next) => {
     const authentication = Config.get('basic-auth')[0];
 
     if(!credentials || credentials.name !== authentication.user && credentials.password !== authentication.password) {
+      res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
       res.status(401).json({"message": "Unauthorized!"});
     }
     else {
