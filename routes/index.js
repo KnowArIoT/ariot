@@ -16,7 +16,7 @@ const postApiLimiter = new RateLimit({
 
 const getApiLimiter = new RateLimit({
   windowMs: 60*1000,
-  max: 20,
+  max: 100,
   delayMs: 0,
   delayAfter: 1,
   message: "Dude... Chill out! Try again in a minute!"
@@ -118,7 +118,7 @@ router.post('/s3', postApiLimiter, (req, res, next) => {
   res.status(200).end();
 });
 
-router.get('/log', getApiLimiter, (req, res, next) => {
+router.get('/log', (req, res, next) => {
 
   const limit = req.query.limit;
 
