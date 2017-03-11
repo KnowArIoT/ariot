@@ -119,7 +119,10 @@ router.post('/s3', postApiLimiter, (req, res, next) => {
 });
 
 router.get('/log', getApiLimiter, (req, res, next) => {
-  database.getLog().then((result) => {
+
+  const limit = req.query.limit;
+
+  database.getLog(limit).then((result) => {
     res.status(200).json(result);
   })
   .catch((err) => {
