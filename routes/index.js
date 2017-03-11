@@ -118,4 +118,13 @@ router.post('/s3', postApiLimiter, (req, res, next) => {
   res.status(200).end();
 });
 
+router.get('/log', getApiLimiter, (req, res, next) => {
+  database.getLog().then((result) => {
+    res.status(200).json(result);
+  })
+  .catch((err) => {
+    res.status(500).send(err);
+  });
+});
+
 module.exports = router;
