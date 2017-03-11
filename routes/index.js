@@ -5,6 +5,7 @@ const auth = require('basic-auth');
 const Config = require('../lib/config');
 
 const router = express.Router();
+const auth = Config.get('basic-auth');
 
 const postApiLimiter = new RateLimit({
   windowMs: 60*1000,
@@ -86,9 +87,9 @@ router.get('/image', (req, res, next) => {
 
 router.post('/*', (req, res, next) => {
     const credentials = auth(req);
-    const authentication = Config.get('basic-auth')[0];
+    const authentication = auth[0];
 
-    if(!credentials || credentials.user !== authentication.user && credentials.password !== authentication.password) {
+    if(!credentials || credentials.name !== authentication.user && credentials.password !== authentication.password) {
       res.status(401).json({"message": "Unauthorized!"});
     }
     else {
