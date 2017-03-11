@@ -1,6 +1,8 @@
 const express = require('express');
 const database = require('../lib/database');
 const RateLimit = require('express-rate-limit');
+const auth = require('basic-auth');
+const Config = require('../lib/config');
 
 const router = express.Router();
 
@@ -80,6 +82,18 @@ router.get('/image', (req, res, next) => {
   .catch((err) => {
     res.status(500).send(err);
   });
+});
+
+router.post('/*', (req, res, next) => {
+    const credentials = auth(req);
+    const authentication = Config.get('basic-auth')[0];
+
+    if(!credentials || credentials.user !== authentication.user && credentials.password !== authentication.password) {
+      res.status(401).json({"message": "Unauthorized!"});
+    }
+    else {
+      next();
+    }
 });
 
 router.post('/save', postApiLimiter, (req, res, next) => {
